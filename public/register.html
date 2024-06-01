@@ -6,19 +6,24 @@
     <title>Cadastro</title>
     <link rel="stylesheet" href="styles.css">
     <script src="auth.js" defer></script>
+    <link rel="icon" href="images/icone.jpeg" type="image/jpeg">
 </head>
 <body>
     <header>
         <h1>Cupcake Shop</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="products.html">Produtos</a></li>
-                <li><a href="cart.html">Meu Carrinho</a></li>
-                <li><a href="login.html">Fazer Login</a></li>
-            </ul>
-        </nav>
+        <div class="cart">
+            <img src="images/cart.png" alt="Cesto de Compras" class="cart-icon">
+            <a href="cart.html">Meu Carrinho</a>
+        </div>
     </header>
+
+    <nav class="top-menu">
+        <ul>
+            <li><a href="index.html">Home |</a></li>
+            <li><a href="products.html">Produtos |</a></li>
+            <li><a href="#" id="login-link">Login<br></a></li>
+        </ul>
+    </nav>
 
     <main>
         <h2>Cadastro</h2>
