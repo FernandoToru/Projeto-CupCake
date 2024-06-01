@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const formData = new FormData(registerForm);
             const data = Object.fromEntries(formData.entries());
 
+            if (data.password !== data['confirm-password']) {
+                alert('Senha não correspondente');
+                return;
+            }
+
             fetch('/register', {
                 method: 'POST',
                 headers: {
@@ -16,7 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify(data)
             })
             .then(response => response.text())
-            .then(result => alert(result))
+            .then(result => {
+                alert(result);
+                if (result === 'User registered successfully.') {
+                    window.location.href = 'login.html';  // Redireciona para a página de login
+                }
+            })
             .catch(error => console.error('Error:', error));
         });
     }
@@ -35,7 +45,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify(data)
             })
             .then(response => response.text())
-            .then(result => alert(result))
+            .then(result => {
+                alert(result);
+                if (result === 'Login successful.') {
+                    window.location.href = 'index.html';  // Redireciona para a página inicial
+                }
+            })
             .catch(error => console.error('Error:', error));
         });
     }
