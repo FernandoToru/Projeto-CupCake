@@ -38,8 +38,8 @@ header h1 {
 }
 
 .cart a {
-    color: #bba45b; /* Cor dos menus do carrinho */
-    font-size: 1.5em; /* Tamanho da fonte do carrinho */
+    color: #bba45b;
+    font-size: 1.5em;
 }
 
 .top-menu {
@@ -60,9 +60,9 @@ header h1 {
 }
 
 .top-menu ul li a {
-    color: #80605a; /* Cor dos menus */
+    color: #80605a;
     text-decoration: none;
-    font-size: 1.5em; /* Tamanho da fonte dos menus */
+    font-size: 1.5em;
 }
 
 .top-menu ul li a:hover {
@@ -79,11 +79,11 @@ h2 {
     margin: 0;
     padding: 0;
     color: #331201;
-    font-size: 4em; /* Tamanho da fonte dos títulos */
+    font-size: 4em;
 }
 
 p {
-    font-size: 1.75em; /* Tamanho da fonte dos parágrafos */
+    font-size: 1.75em;
 }
 
 .modal {
@@ -139,12 +139,52 @@ p {
 
 .login-form h2 {
     color: #333;
-    font-size: 2em; /* Tamanho da fonte dos títulos */
+    font-size: 2em;
 }
 
 .login-form label,
 .login-form input,
 .login-form button,
 .login-form a {
-    font-size: 1.5em; /* Tamanho da fonte dos elementos do formulário */
+    font-size: 1.5em;
+}
+
+/* Estilo adicional para o formulário de registro */
+.form-container {
+    max-width: 600px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #331201;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #553522;
 }
