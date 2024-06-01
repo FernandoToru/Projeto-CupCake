@@ -193,3 +193,53 @@ button {
 button:hover {
     background-color: #553522;
 }
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.product {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+    height: 300px; /* Ajuste a altura total do contêiner do produto */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product img {
+    width: 100%;
+    height: 150px; /* Ajuste a altura da imagem */
+    object-fit: cover; /* Mantém a proporção e preenche a área */
+    border-radius: 5px;
+}
+
+.product h3 {
+    font-size: 1.2em;
+    margin: 10px 0 5px;
+}
+
+.product p {
+    font-size: 1em;
+    margin: 5px 0;
+}
+
+.product button {
+    margin-top: auto;
+    padding: 10px 15px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #331201;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.product button:hover {
+    background-color: #553522;
+}
