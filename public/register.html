@@ -5,24 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="auth.js" defer></script>
+    <link rel="icon" href="images/icone.jpeg" type="image/jpeg">
 </head>
 <body>
     <header>
         <h1>Cupcake Shop</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="products.html">Produtos</a></li>
-                <li><a href="cart.html">Carrinho</a></li>
-                <li><a href="register.html">Cadastro</a></li>
-                <li><a href="login.html">Login</a></li>
-            </ul>
-        </nav>
+        <div class="cart">
+            <img src="images/cart.png" alt="Cesto de Compras" class="cart-icon">
+            <a href="cart.html">Meu Carrinho</a>
+        </div>
+    </header>
+    
+    <nav class="top-menu">
+        <ul>
+            <li><a href="index.html">Home |</a></li>
+            <li><a href="products.html">Produtos |</a></li>
+            <li><a href="#" id="login-link">Login<br></a></li>
+        </ul>
+    </nav>
     </header>
 
     <main>
-        <h2>Cadastro</h2>
+        <h2>Faça seu Cadastro</h2>
+        <p>
+            
+        </p>
         <form id="register-form">
             <label for="name">Nome:</label>
             <input type="text" id="name" name="name" required><br>
@@ -39,5 +46,29 @@
             <button type="submit">Cadastrar</button>
         </form>
     </main>
+
+    <script>
+        document.getElementById('register-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+
+            fetch('/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.text())
+            .then(result => {
+                alert(result);
+                if (result === "User registered successfully.") {
+                    window.location.href = 'login.html';
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
 </body>
 </html>

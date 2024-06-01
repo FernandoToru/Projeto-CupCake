@@ -1,42 +1,36 @@
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('/api/products')
-        .then(response => response.json())
-        .then(products => {
-            renderProducts(products);
-        });
+    const loginLink = document.getElementById('login-link');
+    const modal = document.getElementById('login-modal');
+    const span = document.getElementsByClassName('close')[0];
+
+    loginLink.onclick = function() {
+        modal.style.display = 'block';
+    }
+
+    span.onclick = function() {
+        modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    // Redirecionamentos
+    const loginButton = document.getElementById('login-button');
+    const registerButton = document.getElementById('register-button');
+    const forgotPassword = document.getElementById('forgot-password');
+
+    loginButton.onclick = function() {
+        window.location.href = 'login.html';
+    }
+
+    registerButton.onclick = function() {
+        window.location.href = 'register.html';
+    }
+
+    forgotPassword.onclick = function() {
+        window.location.href = 'forgot-password.html';
+    }
 });
-
-function renderProducts(products) {
-    const productList = document.querySelector('.product-list');
-    productList.innerHTML = '';
-    products.forEach(product => {
-        const productElement = document.createElement('div');
-        productElement.className = 'product';
-        productElement.dataset.productId = product.id;
-        productElement.innerHTML = `
-            <img src="${product.imageUrl}" alt="${product.name}">
-            <h3>${product.name}</h3>
-            <p>Price: R$ ${product.price.toFixed(2)}</p>
-            <button onclick="addToCart(${product.id})">Add to Cart</button>
-        `;
-        productList.appendChild(productElement);
-    });
-
-    document.querySelectorAll('.product button').forEach(button => {
-        button.addEventListener('click', (event) => {
-            const productId = parseInt(event.target.parentElement.dataset.productId, 10);
-            addToCart(productId);
-        });
-    });
-}
-
-function addToCart(productId) {
-    fetch(`/api/products/${productId}`)
-        .then(response => response.json())
-        .then(product => {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            cart.push(product);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            alert('Produto adicionado ao carrinho');
-        });
-}

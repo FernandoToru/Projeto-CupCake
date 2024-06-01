@@ -2,6 +2,7 @@ const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
 const saltRounds = 10;
 const app = express();
 const port = 3000;
@@ -91,6 +92,44 @@ app.post('/login', (req, res) => {
                 res.send("Login successful.");
             } else {
                 res.status(401).send("Password is incorrect.");
+            }
+        });
+    });
+});
+
+// Configurar transporte de email para recuperação de senha
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'your-email@gmail.com', // Substitua pelo seu email
+        pass: 'your-email-password' // Substitua pela sua senha
+    }
+});
+
+// Rota para recuperação de senha
+app.post('/forgot-password', (req, res) => {
+    const { email } = req.body;
+    db.get('SELECT * FROM users WHERE email = ?', [email], (err, user) => {
+        if (err || !user) {
+            return res.status(401).json({ success: false, message: 'Email não encontrado.' });
+        }
+
+        // Gerar um token de recuperação (pode ser um UUID ou algo mais seguro)
+        const token = Math.random().toString(36).substring(2);
+
+        // Enviar email com o link de recuperação
+        const mailOptions = {
+            from: 'your-email@gmail.com', // Substitua pelo seu email
+            to: email,
+            subject: 'Recuperação de Senha',
+            text: `Clique no link para recuperar sua senha: http://localhost:${port}/reset-password?token=${token}`
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return res.status(500).json({ success: false, message: 'Erro ao enviar email.' });
+            } else {
+                res.json({ success: true, message: 'Email de recuperação enviado.' });
             }
         });
     });
