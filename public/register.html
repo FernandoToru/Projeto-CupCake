@@ -103,40 +103,62 @@
                     <option value="SP">São Paulo</option>
                     <option value="SE">Sergipe</option>
                     <option value="TO">Tocantins</option>
-
-                    <!-- Continue para todos os estados -->
                 </select>
             </div>
             <div class="form-group">
                 <label for="city">Cidade:</label>
-                <input type="text" id="city" name="city" required
+                <input type="text" id="city" name="city" required>
             </div>
             <div class="form-group">
                 <label for="password">Senha:</label>
                 <input type="password" id="password" name="password" required>
             </div>
+            <div class="form-group2">
+                <input type="checkbox" id="show-password"> Mostrar Senha<br>
+            </div>
             <div class="form-group">
                 <label for="confirm-password">Confirme a Senha:</label>
                 <input type="password" id="confirm-password" name="confirm-password" required>
             </div>
+            <div class="form-group2">
+                <input type="checkbox" id="show-confirm-password"> Mostrar Senha<br>
+            </div>
+            
             <button type="submit">Cadastrar</button>
         </form>
     </main>
 
-<!-- Modal -->
-<div id="login-modal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <p>Já é cadastrado?</p>
-        <button id="login-button">Faça seu Login</button>
-        <br>
-        <a href="#" id="forgot-password">Esqueceu sua senha?</a>
-        <p>Não tem cadastro ainda?</p>
-        <button id="register-button">Faça seu Cadastro</button>
+    <!-- Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Já é cadastrado?</p>
+            <button id="login-button">Faça seu Login</button>
+            <br>
+            <a href="#" id="forgot-password">Esqueceu sua senha?</a>
+            <p>Não tem cadastro ainda?</p>
+            <button id="register-button">Faça seu Cadastro</button>
+        </div>
     </div>
-</div>
 
-<script src="script.js"></script>
+    <script>
+        document.getElementById('show-password').addEventListener('change', function() {
+            const passwordField = document.getElementById('password');
+            if (this.checked) {
+                passwordField.type = 'text';
+            } else {
+                passwordField.type = 'password';
+            }
+        });
 
+        document.getElementById('show-confirm-password').addEventListener('change', function() {
+            const confirmPasswordField = document.getElementById('confirm-password');
+            if (this.checked) {
+                confirmPasswordField.type = 'text';
+            } else {
+                confirmPasswordField.type = 'password';
+            }
+        });
+    </script>
 </body>
 </html>
