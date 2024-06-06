@@ -36,18 +36,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Exibição de produtos
     const products = [
-        { id: 1, name: 'Chocolate Cupcake', price: 3.5, imageUrl: 'images/chocolate_cupcake.jpg', description: 'Delicioso cupcake de chocolate' },
-        { id: 2, name: 'Vanilla Cupcake', price: 3.0, imageUrl: 'images/carinho.jpg', description: 'Saboroso cupcake de baunilha' },
-        { id: 3, name: 'Red Velvet Cupcake', price: 4.0, imageUrl: 'images/ciranda.jpg', description: 'Cupcake de red velvet com cobertura cremosa' },
-        { id: 4, name: 'Strawberry Cupcake', price: 3.5, imageUrl: 'images/paixao.jpg', description: 'Cupcake de morango com recheio de morango fresco' },
-        { id: 5, name: 'Lemon Cupcake', price: 3.5, imageUrl: 'images/romance.jpg', description: 'Cupcake de limão com cobertura de limão' },
-        { id: 6, name: 'Carrot Cupcake', price: 3.5, imageUrl: 'images/delicado.jpg', description: 'Cupcake de cenoura com cobertura de cream cheese' },
-        { id: 7, name: 'Coconut Cupcake', price: 3.5, imageUrl: 'images/encanto.jpg', description: 'Cupcake de coco com cobertura de coco' },
-        { id: 8, name: 'Blueberry Cupcake', price: 3.5, imageUrl: 'images/fantasia.jpg', description: 'Cupcake de mirtilo com cobertura de mirtilo' },
-        { id: 9, name: 'Banana Cupcake', price: 3.5, imageUrl: 'images/flor.jpg', description: 'Cupcake de banana com cobertura de banana' },
-        { id: 10, name: 'Pumpkin Cupcake', price: 3.5, imageUrl: 'images/tango.jpg', description: 'Cupcake de abóbora com cobertura de abóbora' },
-        { id: 11, name: 'Coffee Cupcake', price: 3.5, imageUrl: 'images/tropical.jpg', description: 'Cupcake de café com cobertura de café' },
-        { id: 12, name: 'Mint Cupcake', price: 3.5, imageUrl: 'images/red.jpg', description: 'Cupcake de red velvet com cobertura cremosa' }
+    { id: 1, name: 'Chocolate', price: 3.5, imageUrl: 'images/chocolate_cupcake.jpg', description: 'Delicioso cupcake de chocolate' },
+    { id: 2, name: 'Carinho', price: 3.0, imageUrl: 'images/carinho.jpg', description: 'Cupcake de massa de chocolate com recheio de doce de leite e cobertura de ganache tradicional' },
+    { id: 3, name: 'Ciranda', price: 4.0, imageUrl: 'images/ciranda.jpg', description: 'Cupcake de massa de chocolate com recheio de brigadeiro artesanal e cobertura buttercream de chocolate' },
+    { id: 4, name: 'Paixão', price: 3.5, imageUrl: 'images/paixao.jpg', description: 'Cupcake de massa de chocolate com toque de pimenta e pedacinhos de chocolate belga com recheio de doce de leite e cobertura ganache tradicional' },
+    { id: 5, name: 'Romance', price: 3.5, imageUrl: 'images/romance.jpg', description: 'Cupcake de massa de chocolate com recheio de geleia de morango e cobertura de ganache tradicional' },
+    { id: 6, name: 'Delicado', price: 3.5, imageUrl: 'images/delicado.jpg', description: 'Cupcake de massa baunilha com recheio ganache de framboesa e cobertura de merengue italiano' },
+    { id: 7, name: 'Encanto', price: 3.5, imageUrl: 'images/encanto.jpg', description: 'Cupcake de massa de baunilha com recheio de geleia de amora e cobertura buttercream de baunilha' },
+    { id: 8, name: 'Fantasia', price: 3.5, imageUrl: 'images/fantasia.jpg', description: 'Cupcake de massa de baunilha com recheio de geleia de morango e cobertura de ganache branco' },
+    { id: 9, name: 'Flor de maracujá', price: 3.5, imageUrl: 'images/flor.jpg', description: 'Cupcake de massa sabor maracujá com recheio de geleia de damasco e cobertura de merengue italiano' },
+    { id: 10, name: 'Tango', price: 3.5, imageUrl: 'images/tango.jpg', description: 'Cupcake de massa de nozes com recheio de doce de leite e cobertura buttercream de doce de leite' },
+    { id: 11, name: 'Tropical', price: 3.5, imageUrl: 'images/tropical.jpg', description: 'Cupcake de massa sabor coco com recheio de ganache tradicional e cobertura de ganache de coco' },
+    { id: 12, name: 'Red Velvet', price: 3.5, imageUrl: 'images/red.jpg', description: 'Cupcake de red velvet com cobertura cremosa' }
     ];
 
     window.products = products; // Torna o array products acessível globalmente
@@ -55,6 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('product-list')) {
         renderProducts(products);
     }
+     // Adicione esta linha
+     renderRecommendations(products.slice(3, 6)); // Modifique os índices conforme necessário para selecionar os produtos desejados
 });
 
 function renderProducts(products) {
@@ -73,6 +75,24 @@ function renderProducts(products) {
         productList.appendChild(productElement);
     });
 }
+
+function renderRecommendations(recommendedProducts) {
+    const recommendationList = document.getElementById('recommendation-list');
+    recommendationList.innerHTML = '';
+    recommendedProducts.forEach(product => {
+        const productElement = document.createElement('div');
+        productElement.className = 'product';
+        productElement.innerHTML = `
+            <img src="${product.imageUrl}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p>Price: R$ ${product.price.toFixed(2)}</p>
+            <p>${product.description}</p>
+            <button onclick="addToCart(${product.id})">Add to Cart</button>
+        `;
+        recommendationList.appendChild(productElement);
+    });
+}
+
 
 function addToCart(productId) {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
