@@ -66,6 +66,10 @@ function removeFromCart(productId) {
 }
 
 function checkout() {
+    window.location.href = 'checkout.html';
+    
+}
+function pagamento() {
     alert('Compra finalizada');
     localStorage.removeItem('cart');
     renderCart();

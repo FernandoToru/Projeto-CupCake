@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="checkout.js" defer></script>
+    <link rel="icon" href="images/icone.jpeg" type="image/jpeg">
+</head>
+<body>
+    <header>
+        <h1>Cupcake Shop</h1>
+        <div class="cart">
+            <img src="images/cart.png" alt="Cesto de Compras" class="cart-icon">
+            <a href="cart.html">Meu Carrinho</a>
+        </div>
+    </header>
+    
+    <nav class="top-menu">
+        <ul>
+            <li><a href="index.html">Home |</a></li>
+            <li><a href="products.html">Produtos |</a></li>
+            <li><a href="#" id="login-link">Login<br></a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <p>Escolha a forma de entrega</p>
+        <div id="checkout-list" class="checkout-list">
+            <!-- Itens do checkout serão inseridos aqui via JavaScript -->
+        </div>
+        <div id="delivery-options">
+            <label><input type="radio" name="delivery" value="retirar" checked> Retirar na Loja</label><br>
+            <label><input type="radio" name="delivery" value="delivery"> Delivery (Taxa de entrega: R$10,00)</label>
+        </div>
+        <div id="checkout-total" class="checkout-total">
+            <!-- Total do checkout será inserido aqui via JavaScript -->
+        </div>
+        <button onclick="pagamento()" class="checkout-button">Proseguir para pagamento</button>
+        
+    </main>
+</body>
+</html>

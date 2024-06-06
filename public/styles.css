@@ -109,7 +109,7 @@ header h1 {
 
 .checkout-button {
     display: block;
-    width: 100%;
+    width: 20%;
     padding: 10px;
     font-size: 1.2em;
     background-color: #d9534f;
@@ -125,6 +125,46 @@ header h1 {
     background-color: #c9302c;
 }
 
+
+.checkout-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.checkout-item {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.checkout-item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+
+.checkout-item-details {
+    flex-grow: 1;
+}
+
+.checkout-total {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 20px;
+}
+
+
+
+#delivery-options {
+    margin-top: 20px;
+}
 
 
 
